@@ -33,4 +33,12 @@ class CourseRepository
 
     return $course->delete();
   }
+
+  public function updateCourseByUuid(string $identify, array $data)
+  {
+    $course = $this->getCourseByUuid($identify);
+
+    return $course->update($data);
+  }
+
 }

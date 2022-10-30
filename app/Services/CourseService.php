@@ -31,5 +31,9 @@ class CourseService
   {
     return $this->repository->deleteCourseByUuid($identify);
   }
-  
+
+  public function updateCourse(string $identify, array $data)
+  {
+    return $this->repository->updateCourseByUuid($identify, $data);
+  }
 }
