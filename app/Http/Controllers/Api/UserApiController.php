@@ -49,12 +49,12 @@ class UserApiController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $identify
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($identify)
     {
-        $user = $this->model->findOrFail($id);
+        $user = $this->model->where('uuid', $identify)->firstOrFail();
 
         return new UserApiResource($user);
     }
@@ -63,12 +63,12 @@ class UserApiController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  string  $identify
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreUpdateUser $request, $id)
+    public function update(StoreUpdateUser $request, $identify)
     {
-        $user = $this->model->findOrFail($id);
+        $user = $this->model->where('uuid', $identify)->firstOrFail();
 
         $data = $request->validated();
 
@@ -86,12 +86,12 @@ class UserApiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  string  $identify
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($identify)
     {
-        $user = $this->model->findOrFail($id);
+        $user = $this->model->where('uuid', $identify)->firstOrFail();
 
         $user->delete();
 
